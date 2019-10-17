@@ -1,0 +1,32 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: files-svc
+spec:
+  selector:
+    app: files-svc
+  ports:
+  - protocol: TCP
+    port: 8080
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: files-svc
+spec:
+  selector:
+    matchLabels:
+      app: files-svc
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: files-svc
+    spec:
+      containers:
+        - name: files-svc
+          image: docker-hub.informatik.haw-hamburg.de/wp-cc-clouddrop/files-service:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
