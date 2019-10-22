@@ -4,4 +4,5 @@
 
 # zero exit value means success
 # dummy non-zero exit value for now to signal error
-exit 1
+echo "DEPLOYING TO AZURE"
+exit 0
