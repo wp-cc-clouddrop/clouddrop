@@ -1,0 +1,20 @@
+image: docker:latest
+services:
+  - docker:dind
+
+variables:
+  DOCKER_DRIVER: overlay
+  DOCKER_TLS_CERTDIR: ""
+
+stages:
+  - deploy-azure
+
+azure:
+  image: mcr.microsoft.com/azure-cli
+  stage: deploy-azure
+  script:
+    - scripts/deploy-to-azure.sh
+
+
+
+
