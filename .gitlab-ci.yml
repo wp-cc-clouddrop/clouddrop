@@ -11,7 +11,8 @@ azure:
   image: mcr.microsoft.com/azure-cli
   stage: deploy-azure
   script:
-    - scripts/deploy-to-azure.sh
+    - kubectl apply -f k8s/files-deployment.yaml
+    - kubectl apply -f k8s/users-deployment.yaml
 
 
 
