@@ -32,6 +32,6 @@ cloud-deploy:
     # deploy!
     - kubectl apply -n default -f k8s/files-deployment.yaml
     - kubectl apply -n default -f k8s/users-deployment.yaml
-    # rollout new image
-    - kubectl rollout restart -n default files-svc
-    - kubectl rollout restart -n default users-svc
+    # workaround to rollout new image
+    - kubectl patch deployment files-svc -p "{\"spec\":{\"template\":{\"metadata\":{\"annotations\":{\"date\":\"`date +'%s'`\"}}}}}"
+    - kubectl patch deployment users-svc -p "{\"spec\":{\"template\":{\"metadata\":{\"annotations\":{\"date\":\"`date +'%s'`\"}}}}}"
