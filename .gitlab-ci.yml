@@ -26,8 +26,9 @@ cloud-deploy:
     - cat ~/.kube/config
     - kubectl config view
     - kubectl config current-context
+    - kubectl get namespaces
     # check if working
     # - kubectl cluster-info
     # deploy!
-    - kubectl apply -f k8s/files-deployment.yaml
-    - kubectl apply -f k8s/users-deployment.yaml
+    - kubectl apply -n default -f k8s/files-deployment.yaml
+    - kubectl apply -n default -f k8s/users-deployment.yaml
