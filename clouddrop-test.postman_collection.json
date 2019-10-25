@@ -81,7 +81,7 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJjbGllbnQiOiJ0dXBhY0BzaGFrdXIuY29tIiwiZXhwIjoxNTcxOTkxNjgxfQ.HkDSAD0a11R4JFAh9mZ19xEMtWP1FXJyaGzn4_tIrSk",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJjbGllbnQiOiJ0dXBhY0BzaGFrdXIuY29tIiwiZXhwIjoxNTcxOTk3NzU5fQ.-SpaBPHfJJPpHMOtOvWIkcTK2RLUgewWnez2TnqyxO8",
 						"type": "text"
 					}
 				],
@@ -111,7 +111,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJjbGllbnQiOiJ0dXBhY0BzaGFrdXIuY29tIiwiZXhwIjoxNTcxOTkxNjgxfQ.HkDSAD0a11R4JFAh9mZ19xEMtWP1FXJyaGzn4_tIrSk",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJjbGllbnQiOiJ0dXBhY0BzaGFrdXIuY29tIiwiZXhwIjoxNTcxOTk3NzU5fQ.-SpaBPHfJJPpHMOtOvWIkcTK2RLUgewWnez2TnqyxO8",
 						"type": "text"
 					}
 				],
@@ -147,7 +147,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJjbGllbnQiOiJ0dXBhY0BzaGFrdXIuY29tIiwiZXhwIjoxNTcxOTkxNjgxfQ.HkDSAD0a11R4JFAh9mZ19xEMtWP1FXJyaGzn4_tIrSk",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJjbGllbnQiOiJ0dXBhY0BzaGFrdXIuY29tIiwiZXhwIjoxNTcxOTk3NzU5fQ.-SpaBPHfJJPpHMOtOvWIkcTK2RLUgewWnez2TnqyxO8",
 						"type": "text"
 					}
 				],
@@ -173,12 +173,12 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJjbGllbnQiOiJ0dXBhY0BzaGFrdXIuY29tIiwiZXhwIjoxNTcxOTkxNjgxfQ.HkDSAD0a11R4JFAh9mZ19xEMtWP1FXJyaGzn4_tIrSk",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJjbGllbnQiOiJ0dXBhY0BzaGFrdXIuY29tIiwiZXhwIjoxNTcxOTk3NzU5fQ.-SpaBPHfJJPpHMOtOvWIkcTK2RLUgewWnez2TnqyxO8",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "https://clouddrop.xyz/files/search?type=.jpg",
+					"raw": "https://clouddrop.xyz/files/list/search?filename=Fisch.jpg",
 					"protocol": "https",
 					"host": [
 						"clouddrop",
@@ -186,12 +186,13 @@
 					],
 					"path": [
 						"files",
+						"list",
 						"search"
 					],
 					"query": [
 						{
-							"key": "type",
-							"value": ".jpg"
+							"key": "filename",
+							"value": "Fisch.jpg"
 						}
 					]
 				}
@@ -205,7 +206,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJjbGllbnQiOiJ0dXBhY0BzaGFrdXIuY29tIiwiZXhwIjoxNTcxOTkxNjgxfQ.HkDSAD0a11R4JFAh9mZ19xEMtWP1FXJyaGzn4_tIrSk",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJjbGllbnQiOiJ0dXBhY0BzaGFrdXIuY29tIiwiZXhwIjoxNTcxOTk3NzU5fQ.-SpaBPHfJJPpHMOtOvWIkcTK2RLUgewWnez2TnqyxO8",
 						"type": "text"
 					}
 				],
@@ -231,7 +232,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJjbGllbnQiOiJ0dXBhY0BzaGFrdXIuY29tIiwiZXhwIjoxNTcxOTkxNjgxfQ.HkDSAD0a11R4JFAh9mZ19xEMtWP1FXJyaGzn4_tIrSk",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJjbGllbnQiOiJ0dXBhY0BzaGFrdXIuY29tIiwiZXhwIjoxNTcxOTk3NzU5fQ.-SpaBPHfJJPpHMOtOvWIkcTK2RLUgewWnez2TnqyxO8",
 						"type": "text"
 					}
 				],
@@ -257,7 +258,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJjbGllbnQiOiJ0dXBhY0BzaGFrdXIuY29tIiwiZXhwIjoxNTcxOTkxNjgxfQ.HkDSAD0a11R4JFAh9mZ19xEMtWP1FXJyaGzn4_tIrSk",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJjbGllbnQiOiJ0dXBhY0BzaGFrdXIuY29tIiwiZXhwIjoxNTcxOTk3NDkzfQ.HhmtVk3YKcZqX7cqoU-HAP7Vf3MkK6g7mT3z8mUE00U",
 						"type": "text"
 					}
 				],
@@ -271,6 +272,58 @@
 					"path": [
 						"user",
 						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJjbGllbnQiOiJ0dXBhY0BzaGFrdXIuY29tIiwiZXhwIjoxNTcxOTk3NDkzfQ.HhmtVk3YKcZqX7cqoU-HAP7Vf3MkK6g7mT3z8mUE00U",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://clouddrop.xyz/user/tupac@shakur.com",
+					"protocol": "https",
+					"host": [
+						"clouddrop",
+						"xyz"
+					],
+					"path": [
+						"user",
+						"tupac@shakur.com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJjbGllbnQiOiJ0dXBhY0BzaGFrdXIuY29tIiwiZXhwIjoxNTcxOTk3NzU5fQ.-SpaBPHfJJPpHMOtOvWIkcTK2RLUgewWnez2TnqyxO8",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://clouddrop.xyz/user/tupac@shakur.com",
+					"protocol": "https",
+					"host": [
+						"clouddrop",
+						"xyz"
+					],
+					"path": [
+						"user",
+						"tupac@shakur.com"
 					]
 				}
 			},
