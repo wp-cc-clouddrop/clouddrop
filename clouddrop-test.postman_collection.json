@@ -1,0 +1,281 @@
+{
+	"info": {
+		"_postman_id": "17fba465-35cf-457c-9a31-2309c7a38657",
+		"name": "clouddrop-test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n \"name\": \"Tupac Shakur\",\n \"email\": \"tupac@shakur.com\",\n \"password\": \"tupacshakur\"\n}\n"
+				},
+				"url": {
+					"raw": "https://clouddrop.xyz/user",
+					"protocol": "https",
+					"host": [
+						"clouddrop",
+						"xyz"
+					],
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Login",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "tupacshakur",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "tupac@shakur.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://clouddrop.xyz/user/login",
+					"protocol": "https",
+					"host": [
+						"clouddrop",
+						"xyz"
+					],
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload Metadata",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJjbGllbnQiOiJ0dXBhY0BzaGFrdXIuY29tIiwiZXhwIjoxNTcxOTkxNjgxfQ.HkDSAD0a11R4JFAh9mZ19xEMtWP1FXJyaGzn4_tIrSk",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"filename\": \"Fisch.jpg\",\n    \"type\": \".jpg\"\n}"
+				},
+				"url": {
+					"raw": "https://clouddrop.xyz/files/metadata",
+					"protocol": "https",
+					"host": [
+						"clouddrop",
+						"xyz"
+					],
+					"path": [
+						"files",
+						"metadata"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update File",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJjbGllbnQiOiJ0dXBhY0BzaGFrdXIuY29tIiwiZXhwIjoxNTcxOTkxNjgxfQ.HkDSAD0a11R4JFAh9mZ19xEMtWP1FXJyaGzn4_tIrSk",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/fazel/Desktop/files-service/src/main/java/com/clouddrop/files/Fisch.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://clouddrop.xyz/files/Fisch.jpg",
+					"protocol": "https",
+					"host": [
+						"clouddrop",
+						"xyz"
+					],
+					"path": [
+						"files",
+						"Fisch.jpg"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Files",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJjbGllbnQiOiJ0dXBhY0BzaGFrdXIuY29tIiwiZXhwIjoxNTcxOTkxNjgxfQ.HkDSAD0a11R4JFAh9mZ19xEMtWP1FXJyaGzn4_tIrSk",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://clouddrop.xyz/files/list",
+					"protocol": "https",
+					"host": [
+						"clouddrop",
+						"xyz"
+					],
+					"path": [
+						"files",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search File",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJjbGllbnQiOiJ0dXBhY0BzaGFrdXIuY29tIiwiZXhwIjoxNTcxOTkxNjgxfQ.HkDSAD0a11R4JFAh9mZ19xEMtWP1FXJyaGzn4_tIrSk",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://clouddrop.xyz/files/search?type=.jpg",
+					"protocol": "https",
+					"host": [
+						"clouddrop",
+						"xyz"
+					],
+					"path": [
+						"files",
+						"search"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": ".jpg"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Download File",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJjbGllbnQiOiJ0dXBhY0BzaGFrdXIuY29tIiwiZXhwIjoxNTcxOTkxNjgxfQ.HkDSAD0a11R4JFAh9mZ19xEMtWP1FXJyaGzn4_tIrSk",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://clouddrop.xyz/files/Fisch.jpg",
+					"protocol": "https",
+					"host": [
+						"clouddrop",
+						"xyz"
+					],
+					"path": [
+						"files",
+						"Fisch.jpg"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete File",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJjbGllbnQiOiJ0dXBhY0BzaGFrdXIuY29tIiwiZXhwIjoxNTcxOTkxNjgxfQ.HkDSAD0a11R4JFAh9mZ19xEMtWP1FXJyaGzn4_tIrSk",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://clouddrop.xyz/files/Fisch.jpg",
+					"protocol": "https",
+					"host": [
+						"clouddrop",
+						"xyz"
+					],
+					"path": [
+						"files",
+						"Fisch.jpg"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout User",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJjbGllbnQiOiJ0dXBhY0BzaGFrdXIuY29tIiwiZXhwIjoxNTcxOTkxNjgxfQ.HkDSAD0a11R4JFAh9mZ19xEMtWP1FXJyaGzn4_tIrSk",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://clouddrop.xyz/user/logout",
+					"protocol": "https",
+					"host": [
+						"clouddrop",
+						"xyz"
+					],
+					"path": [
+						"user",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
