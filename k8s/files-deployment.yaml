@@ -18,7 +18,7 @@ spec:
   selector:
     matchLabels:
       app: files-svc
-  replicas: 1
+  replicas: 3
   template:
     metadata:
       labels:
