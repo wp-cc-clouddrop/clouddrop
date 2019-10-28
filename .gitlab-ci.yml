@@ -13,7 +13,7 @@ cloud-deploy:
     name: Dev
   image: microsoft/azure-cli
   script:
-    - cat az.cosmos.cfg.json
+    - cat "$AZ_COSMOS_CFG_JSON"
     # setup kubectl
     - curl -LO $K8S_STABLE_VERSION_URL
     - chmod +x ./kubectl
