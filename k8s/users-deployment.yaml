@@ -30,5 +30,13 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
+          volumeMounts:
+          - name: azure-cosmosdb-config
+            mountpath: "/app/config"
+            readOnly: true
+      volumes:
+      - name: azure-cosmosdb-config
+        secret:
+          secretName: azure-cosmosdb
       imagePullSecrets:
       - name: regcred
