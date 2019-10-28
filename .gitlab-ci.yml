@@ -2,6 +2,7 @@ image: docker:latest
 
 variables:
   DOCKER_TLS_CERTDIR: ""
+  CI_DEBUG_TRACE: true
 
 stages:
   - deploy
@@ -12,6 +13,7 @@ cloud-deploy:
     name: Dev
   image: microsoft/azure-cli
   script:
+    - cat az.cosmos.cfg.json
     # setup kubectl
     - curl -LO $K8S_STABLE_VERSION_URL
     - chmod +x ./kubectl
