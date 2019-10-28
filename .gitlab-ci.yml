@@ -2,7 +2,7 @@ image: docker:latest
 
 variables:
   DOCKER_TLS_CERTDIR: ""
-  CI_DEBUG_TRACE: true
+  CI_DEBUG_TRACE: "true"
 
 stages:
   - deploy
