@@ -30,5 +30,11 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
+        - env:
+            - name: AZURE_BLOB_CONN_STRING
+              valueFrom:
+                secretKeyRef:
+                    name: azure-blob
+                    key: conn.string
       imagePullSecrets:
       - name: regcred
