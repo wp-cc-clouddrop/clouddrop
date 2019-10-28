@@ -32,7 +32,7 @@ spec:
             - containerPort: 8080
           volumeMounts:
           - name: azure-cosmosdb-config
-            mountpath: "/app/config"
+            mountPath: "/app/config"
             readOnly: true
       volumes:
       - name: azure-cosmosdb-config
