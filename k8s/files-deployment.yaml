@@ -36,5 +36,25 @@ spec:
                 secretKeyRef:
                     name: azure-blob
                     key: conn.string
+            - name: AZURE_CS_PICTURE_ANALYSIS_KEY
+              valueFrom:
+                secretKeyRef:
+                    name: azure-cognitive-pic
+                    key: subscriptionKey
+            - name: AZURE_CS_PICTURE_ANALYSIS_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                    name: azure-cognitive-pic
+                    key: endpoint
+            - name: AZURE_CS_TEXT_ANALYSIS_KEY
+              valueFrom:
+                secretKeyRef:
+                    name: azure-cognitive-text
+                    key: key
+            - name: AZURE_CS_TEXT_ANALYSIS_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                    name: azure-cognitive-text
+                    key: endpoint
       imagePullSecrets:
       - name: regcred
