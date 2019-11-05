@@ -47,6 +47,7 @@
 						"exec": [
 							"var token = pm.response.headers.get(\"Authorization\");",
 							"console.log(\"token: \" + token);",
+							"",
 							"pm.globals.set(\"currentAccessToken\", token);",
 							"console.log(\"currentAccessToken: \" + pm.globals.get(\"currentAccessToken\"));"
 						],
@@ -88,7 +89,7 @@
 			"response": []
 		},
 		{
-			"name": "Upload Metadata",
+			"name": "Upload Metadata txt",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -123,7 +124,78 @@
 			"response": []
 		},
 		{
-			"name": "Update File",
+			"name": "Update File txt",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{currentAccessToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/home/pokgak/git/cloud-computing/files-service/src/main/java/com/clouddrop/files/testfile.txt"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://clouddrop.xyz/files/testfile.txt",
+					"protocol": "https",
+					"host": [
+						"clouddrop",
+						"xyz"
+					],
+					"path": [
+						"files",
+						"testfile.txt"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload Metadata pic",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{currentAccessToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"filename\": \"Fisch.jpg\",\n    \"type\": \".jpg\"\n}"
+				},
+				"url": {
+					"raw": "https://clouddrop.xyz/files/metadata",
+					"protocol": "https",
+					"host": [
+						"clouddrop",
+						"xyz"
+					],
+					"path": [
+						"files",
+						"metadata"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update File pic",
 			"request": {
 				"method": "PUT",
 				"header": [
