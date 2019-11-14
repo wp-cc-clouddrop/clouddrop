@@ -16,7 +16,7 @@ local kp =
           serviceMonitorSelector+: {
               'key': 'app-monitor',
               'operator': 'In',
-              'values': ['spring', 'golang'],
+              'values': ['spring', 'golang', 'azure-exporter'],
           },
         },
       },
@@ -62,6 +62,29 @@ local kp =
           selector: {
             matchLabels: {
               app: 'golang'
+            },
+          },
+        },
+      },
+      serviceMonitorAzureExporter: {
+        apiVersion: 'monitoring.coreos.com/v1',
+        kind: 'ServiceMonitor',
+        metadata: {
+          labels: {'app-monitor': 'azure-exporter'},
+          name: 'azure-exporter-servicemonitor',
+          namespace: 'default',
+        },
+        spec: {
+          jobLabel: 'azure-exporter',
+          endpoints: [
+            {
+              port: 'exporter',
+              path: '/metrics',
+            },
+          ],
+          selector: {
+            matchLabels: {
+              app: 'azure-exporter'
             },
           },
         },
