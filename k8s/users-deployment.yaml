@@ -11,6 +11,9 @@ spec:
   - name: web
     protocol: TCP
     port: 8080
+  - name: metrics
+    protocol: TCP
+    port: 8081
   type: ClusterIP
 ---
 apiVersion: apps/v1

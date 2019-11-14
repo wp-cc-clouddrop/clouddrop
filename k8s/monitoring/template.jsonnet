@@ -55,7 +55,7 @@ local kp =
           jobLabel: 'golang',
           endpoints: [
             {
-              port: 'web',
+              port: 'metrics',
               path: '/metrics',
             },
           ],
