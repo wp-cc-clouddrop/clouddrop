@@ -1,0 +1,47 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: azure-exporter-fazel
+  labels:
+    app: azure-exporter
+spec:
+  selector:
+    app: azure-exporter-fazel
+  ports:
+  - name: exporter
+    protocol: TCP
+    port: 9276
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: azure-exporter-fazel
+spec:
+  selector:
+    matchLabels:
+      app: azure-exporter-fazel
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: azure-exporter-fazel
+    spec:
+      containers:
+        - name: azure-exporter
+          ports:
+            - containerPort: 9276
+          volumeMounts:
+          - name: config-volume
+            mountPath: "/app"
+          image: docker-hub.informatik.haw-hamburg.de/wp-cc-clouddrop/cloudrop/azure-exporter:latest
+          imagePullPolicy: Always
+      imagePullSecrets:
+      - name: regcred
+      volumes:
+      - name: config-volume
+        configMap:
+          name: azure-exporter-cfg
+          items:
+          - key: fazel
+            path: azure.yml
