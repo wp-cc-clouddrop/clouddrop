@@ -2,11 +2,14 @@ kind: Service
 apiVersion: v1
 metadata:
   name: users-svc
+  labels:
+    app: golang
 spec:
   selector:
     app: users-svc
   ports:
-  - protocol: TCP
+  - name: web
+    protocol: TCP
     port: 8080
   type: ClusterIP
 ---
