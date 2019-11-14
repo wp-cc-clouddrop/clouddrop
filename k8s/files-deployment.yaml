@@ -2,11 +2,14 @@ kind: Service
 apiVersion: v1
 metadata:
   name: files-svc
+  labels:
+    app: spring
 spec:
   selector:
     app: files-svc
   ports:
-  - protocol: TCP
+  - name: web
+    protocol: TCP
     port: 8080
   type: ClusterIP
 ---
