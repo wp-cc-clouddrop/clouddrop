@@ -13,7 +13,11 @@ local kp =
     prometheus+::{
       prometheus+: {
         spec+: {
-          serviceMonitorSelector: { 'app-monitor': 'spring', 'app-monitor': 'golang'},
+          serviceMonitorSelector+: {
+              'key': 'app-monitor',
+              'operator': 'In',
+              'values': ['spring', 'golang'],
+          },
         },
       },
       serviceMonitorSpring: {
