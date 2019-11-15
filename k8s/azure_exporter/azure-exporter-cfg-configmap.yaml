@@ -1,0 +1,41 @@
+apiVersion: v1
+data:
+  fazel: |-
+    active_directory_authority_url: "https://login.microsoftonline.com/"
+    resource_manager_url: "https://management.azure.com/"
+    credentials:
+      subscription_id: bf09de0b-3313-4d7b-ad36-6a4ebcec5f89
+      client_id: 540243f0-3d4c-4d5e-89ee-e5da8aecd019
+      client_secret: :.=De_SPtTDUjRFuwIsgUiB03p2FTef5
+      tenant_id: 38d63075-6a27-4ec4-95f9-473f5ef2f1b5
+
+    targets:
+      - resource: /resourceGroups/Storage/providers/Microsoft.Storage/storageAccounts/clouddropstorage/blobServices/default
+        metrics:
+        - name: "UsedCapacity"
+        - name: "Ingress"
+        - name: "Egress"
+        - name: "Availability"
+      - resource: /resourceGroups/KI/providers/Microsoft.CognitiveServices/accounts/clouddropComputerVision
+        metrics:
+        - name: "SuccessfulCalls"
+        - name: "TotalErrors"
+        - name: "BlockedCalls"
+        - name: "Latency"
+      - resource: /resourceGroups/KI/providers/Microsoft.CognitiveServices/accounts/clouddropTextAnalytics
+        metrics:
+        - name: "SuccessfulCalls"
+        - name: "TotalErrors"
+        - name: "BlockedCalls"
+        - name: "Latency"
+kind: ConfigMap
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","data":{"fazel":"active_directory_authority_url: \"https://login.microsoftonline.com/\"\nresource_manager_url: \"https://management.azure.com/\"\ncredentials:\n  subscription_id: bf09de0b-3313-4d7b-ad36-6a4ebcec5f89\n  client_id: 540243f0-3d4c-4d5e-89ee-e5da8aecd019\n  client_secret: :.=De_SPtTDUjRFuwIsgUiB03p2FTef5\n  tenant_id: 38d63075-6a27-4ec4-95f9-473f5ef2f1b5\n\ntargets:\n  - resource: /resourceGroups/Storage/providers/Microsoft.Storage/storageAccounts/clouddropstorage/blobServices/default\n    metrics:\n    - name: \"UsedCapacity\"\n    - name: \"Ingress\"\n    - name: \"Egress\"\n    - name: \"Availability\"\n  - resource: /resourceGroups/KI/providers/Microsoft.CognitiveServices/accounts/clouddropComputerVision\n    metrics:\n    - name: \"SuccessfulCalls\"\n    - name: \"TotalErrors\"\n    - name: \"BlockedCalls\"\n    - name: \"Latency\"\n  - resource: /resourceGroups/KI/providers/Microsoft.CognitiveServices/accounts/clouddropTextAnalytics\n    metrics:\n    - name: \"SuccessfulCalls\"\n    - name: \"TotalErrors\"\n    - name: \"BlockedCalls\"\n    - name: \"Latency\""},"kind":"ConfigMap","metadata":{"annotations":{},"creationTimestamp":"2019-11-14T23:08:24Z","name":"azure-exporter-cfg","namespace":"default","resourceVersion":"433413","selfLink":"/api/v1/namespaces/default/configmaps/azure-exporter-cfg","uid":"a8e210a2-0733-11ea-84fe-d2971398ce9b"}}
+  creationTimestamp: "2019-11-14T23:08:24Z"
+  name: azure-exporter-cfg
+  namespace: default
+  resourceVersion: "514234"
+  selfLink: /api/v1/namespaces/default/configmaps/azure-exporter-cfg
+  uid: a8e210a2-0733-11ea-84fe-d2971398ce9b
