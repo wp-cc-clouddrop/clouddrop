@@ -16,48 +16,56 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  creationTimestamp: null
   name: files-svc
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: files-svc
-  replicas: 3
+  strategy: {}
   template:
     metadata:
+      annotations:
+        linkerd.io/inject: enabled
+      creationTimestamp: null
       labels:
         app: files-svc
     spec:
       containers:
-        - name: files-svc
-          image: docker-hub.informatik.haw-hamburg.de/wp-cc-clouddrop/files-service:latest
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 8080
-          env:
-            - name: AZURE_BLOB_CONN_STRING
-              valueFrom:
-                secretKeyRef:
-                    name: azure-blob
-                    key: conn.string
-            - name: AZURE_CS_PICTURE_ANALYSIS_KEY
-              valueFrom:
-                secretKeyRef:
-                    name: azure-cognitive-pic
-                    key: subscriptionKey
-            - name: AZURE_CS_PICTURE_ANALYSIS_ENDPOINT
-              valueFrom:
-                secretKeyRef:
-                    name: azure-cognitive-pic
-                    key: endpoint
-            - name: AZURE_CS_TEXT_ANALYSIS_KEY
-              valueFrom:
-                secretKeyRef:
-                    name: azure-cognitive-text
-                    key: key
-            - name: AZURE_CS_TEXT_ANALYSIS_ENDPOINT
-              valueFrom:
-                secretKeyRef:
-                    name: azure-cognitive-text
-                    key: endpoint
+      - env:
+        - name: AZURE_BLOB_CONN_STRING
+          valueFrom:
+            secretKeyRef:
+              key: conn.string
+              name: azure-blob
+        - name: AZURE_CS_PICTURE_ANALYSIS_KEY
+          valueFrom:
+            secretKeyRef:
+              key: subscriptionKey
+              name: azure-cognitive-pic
+        - name: AZURE_CS_PICTURE_ANALYSIS_ENDPOINT
+          valueFrom:
+            secretKeyRef:
+              key: endpoint
+              name: azure-cognitive-pic
+        - name: AZURE_CS_TEXT_ANALYSIS_KEY
+          valueFrom:
+            secretKeyRef:
+              key: key
+              name: azure-cognitive-text
+        - name: AZURE_CS_TEXT_ANALYSIS_ENDPOINT
+          valueFrom:
+            secretKeyRef:
+              key: endpoint
+              name: azure-cognitive-text
+        image: docker-hub.informatik.haw-hamburg.de/wp-cc-clouddrop/files-service:latest
+        imagePullPolicy: Always
+        name: files-svc
+        ports:
+        - containerPort: 8080
+        resources: {}
       imagePullSecrets:
       - name: regcred
+status: {}
+---

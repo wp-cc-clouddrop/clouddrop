@@ -19,30 +19,38 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  creationTimestamp: null
   name: users-svc
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: users-svc
-  replicas: 3
+  strategy: {}
   template:
     metadata:
+      annotations:
+        linkerd.io/inject: enabled
+      creationTimestamp: null
       labels:
         app: users-svc
     spec:
       containers:
-        - name: users-svc
-          image: docker-hub.informatik.haw-hamburg.de/wp-cc-clouddrop/users:latest
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 8080
-          volumeMounts:
-          - name: azure-cosmosdb-config
-            mountPath: "/app/config"
-            readOnly: true
+      - image: docker-hub.informatik.haw-hamburg.de/wp-cc-clouddrop/users:latest
+        imagePullPolicy: Always
+        name: users-svc
+        ports:
+        - containerPort: 8080
+        resources: {}
+        volumeMounts:
+        - mountPath: /app/config
+          name: azure-cosmosdb-config
+          readOnly: true
+      imagePullSecrets:
+      - name: regcred
       volumes:
       - name: azure-cosmosdb-config
         secret:
           secretName: azure-cosmosdb
-      imagePullSecrets:
-      - name: regcred
+status: {}
+---
