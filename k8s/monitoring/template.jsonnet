@@ -80,6 +80,7 @@ local kp =
             {
               port: 'exporter',
               path: '/metrics',
+              interval: '1m',
             },
           ],
           selector: {
