@@ -17,7 +17,10 @@ local kp =
     prometheus+::{
       prometheus+: {
         spec+: {
-          serviceMonitorSelector+: {'app-monitor': 'azure-exporter', 'k8s-app': 'linkerd-prometheus'},
+          serviceMonitorSelector+: {
+            'key': 'app', 'operator': 'In', 'values': ['azure-metrics', 'app-metrics'],
+            'k8s-app': 'linkerd-prometheus',
+          },
         },
       },
       serviceMonitorLinkerdPrometheus: {
@@ -67,26 +70,51 @@ local kp =
           },
         },
       },
-      serviceMonitorAzureExporter: {
+      serviceMonitorAzureMetrics: {
         apiVersion: 'monitoring.coreos.com/v1',
         kind: 'ServiceMonitor',
         metadata: {
-          labels: {'app-monitor': 'azure-exporter'},
-          name: 'azure-exporter-servicemonitor',
+          labels: {'app': 'azure-metrics'},
+          name: 'azure-metrics-servicemonitor',
           namespace: 'default',
         },
         spec: {
-          jobLabel: 'azure-exporter',
+          jobLabel: 'azure-metrics',
           endpoints: [
             {
-              port: 'exporter',
+              port: 'http-metrics',
               path: '/metrics',
               interval: '1m',
             },
           ],
           selector: {
             matchLabels: {
-              app: 'azure-exporter'
+              app: 'azure-metrics'
+            },
+          },
+        },
+      },
+    serviceMonitorAppMetrics: {
+        apiVersion: 'monitoring.coreos.com/v1',
+        kind: 'ServiceMonitor',
+        metadata: {
+          labels: {'app': 'app-metrics'},
+          name: 'app-metrics-servicemonitor',
+          namespace: 'default',
+        },
+        spec: {
+          jobLabel: 'app-metrics',
+          endpoints: [
+            {
+              port: 'web',
+              path: '/metrics',
+            },
+          ],
+          selector: {
+            matchLabels: {
+              'key': 'app',
+              'operator': 'In',
+              'values': ['spring', 'golang'],
             },
           },
         },
