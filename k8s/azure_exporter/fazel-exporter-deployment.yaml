@@ -37,7 +37,7 @@ apiVersion: v1
 metadata:
   name: azure-exporter-fazel
   labels:
-    app: azure-exporter
+    app: azure-metrics
 spec:
   selector:
     app: azure-exporter-fazel
