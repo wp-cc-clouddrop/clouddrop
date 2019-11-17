@@ -1,3 +1,37 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: azure-exporter-cfg
+data:
+  fazel: |-
+    active_directory_authority_url: "https://login.microsoftonline.com/"
+    resource_manager_url: "https://management.azure.com/"
+    credentials:
+      subscription_id: bf09de0b-3313-4d7b-ad36-6a4ebcec5f89
+      client_id: 540243f0-3d4c-4d5e-89ee-e5da8aecd019
+      client_secret: :.=De_SPtTDUjRFuwIsgUiB03p2FTef5
+      tenant_id: 38d63075-6a27-4ec4-95f9-473f5ef2f1b5
+
+    targets:
+      - resource: /resourceGroups/Storage/providers/Microsoft.Storage/storageAccounts/clouddropstorage/blobServices/default
+        metrics:
+        - name: "UsedCapacity"
+        - name: "Ingress"
+        - name: "Egress"
+        - name: "Availability"
+      - resource: /resourceGroups/KI/providers/Microsoft.CognitiveServices/accounts/clouddropComputerVision
+        metrics:
+        - name: "SuccessfulCalls"
+        - name: "TotalErrors"
+        - name: "BlockedCalls"
+        - name: "Latency"
+      - resource: /resourceGroups/KI/providers/Microsoft.CognitiveServices/accounts/clouddropTextAnalytics
+        metrics:
+        - name: "SuccessfulCalls"
+        - name: "TotalErrors"
+        - name: "BlockedCalls"
+        - name: "Latency"
+---
 kind: Service
 apiVersion: v1
 metadata:
@@ -8,9 +42,10 @@ spec:
   selector:
     app: azure-exporter-fazel
   ports:
-  - name: exporter
+  - name: http-metrics
     protocol: TCP
-    port: 9276
+    port: 8080
+    targetPort: 9276
   type: ClusterIP
 ---
 apiVersion: apps/v1
@@ -37,7 +72,7 @@ spec:
           image: docker-hub.informatik.haw-hamburg.de/wp-cc-clouddrop/cloudrop/azure-exporter:latest
           imagePullPolicy: Always
       imagePullSecrets:
-      - name: regcred
+      - name: haw-registry
       volumes:
       - name: config-volume
         configMap:
