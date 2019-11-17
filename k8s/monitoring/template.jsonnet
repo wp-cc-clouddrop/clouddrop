@@ -9,59 +9,60 @@ local kp =
   {
     _config+:: {
       namespace: 'monitoring',
+
+      prometheus+:: {
+        namespaces+:: ['linkerd'],
+      },
     },
     prometheus+::{
       prometheus+: {
         spec+: {
-          serviceMonitorSelector+: {
-              'key': 'app-monitor',
-              'operator': 'In',
-              'values': ['spring', 'golang', 'azure-exporter'],
-          },
+          serviceMonitorSelector+: {'app-monitor': 'azure-exporter', 'k8s-app': 'linkerd-prometheus'},
         },
       },
-      serviceMonitorSpring: {
+      serviceMonitorLinkerdPrometheus: {
         apiVersion: 'monitoring.coreos.com/v1',
         kind: 'ServiceMonitor',
         metadata: {
-          labels: {'app-monitor': 'spring'},
-          name: 'spring-servicemonitor',
-          namespace: 'default',
-        },
-        spec: {
-          jobLabel: 'spring',
-          endpoints: [
-            {
-              port: 'web',
-              path: '/actuator/prometheus',
-            },
-          ],
-          selector: {
-            matchLabels: {
-              app: 'spring'
-            },
+          labels: {
+            'k8s-app': 'linkerd-prometheus',
+            'release': 'monitoring',
           },
-        },
-      },
-      serviceMonitorGolang: {
-        apiVersion: 'monitoring.coreos.com/v1',
-        kind: 'ServiceMonitor',
-        metadata: {
-          labels: {'app-monitor': 'golang'},
-          name: 'golang-servicemonitor',
-          namespace: 'default',
+          name: 'linkerd-federate',
+          namespace: 'linkerd',
         },
         spec: {
-          jobLabel: 'golang',
+          jobLabel: 'app',
           endpoints: [
             {
-              port: 'metrics',
-              path: '/metrics',
+              interval: '30s',
+              scrapeTimeout: '30s',
+              params: {
+                'match[]': [
+                  '{job="linkerd-proxy"}',
+                  '{job="linkerd-controller"}',
+                ],
+              },
+              path: '/federate',
+              port: 'admin-http',
+              honorLabels: true,
+              relabelings: [
+                {
+                  action: 'keep',
+                  regex: '^prometheus$',
+                  sourceLabels: [
+                    '__meta_kubernetes_pod_container_name',
+                  ],
+                },
+              ],
             },
           ],
+          namespaceSelector: {
+            matchNames: ['linkerd'],
+          },
           selector: {
             matchLabels: {
-              app: 'golang'
+              'linkerd.io/control-plane-component': 'prometheus',
             },
           },
         },
