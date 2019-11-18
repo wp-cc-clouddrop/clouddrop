@@ -32,6 +32,3 @@ cloud-deploy:
     # deploy!
     - kubectl apply -n default -f k8s/files-deployment.yaml
     - kubectl apply -n default -f k8s/users-deployment.yaml
-    # workaround to rollout new image
-    - kubectl -n default rollout restart deployment/users-svc
-    - kubectl -n default rollout restart deployment/files-svc
