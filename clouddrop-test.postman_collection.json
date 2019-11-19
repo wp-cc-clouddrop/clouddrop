@@ -24,8 +24,8 @@
 					"raw": "{\n \"name\": \"Brockhampton\",\n \"email\": \"brock@hampton.com\",\n \"password\": \"brockhampton\"\n}\n"
 				},
 				"url": {
-					"raw": "https://clouddrop.xyz/user",
-					"protocol": "https",
+					"raw": "http://clouddrop.xyz/user",
+					"protocol": "http",
 					"host": [
 						"clouddrop",
 						"xyz"
@@ -49,7 +49,12 @@
 							"console.log(\"token: \" + token);",
 							"",
 							"pm.globals.set(\"currentAccessToken\", token);",
-							"console.log(\"currentAccessToken: \" + pm.globals.get(\"currentAccessToken\"));"
+							"console.log(\"currentAccessToken: \" + pm.globals.get(\"currentAccessToken\"));",
+							"",
+							"var code = 204;",
+							"pm.test(\"Check response code \" + code, function () {",
+							"    pm.response.to.have.status(code);",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -74,8 +79,8 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://clouddrop.xyz/user/login",
-					"protocol": "https",
+					"raw": "http://clouddrop.xyz/user/login",
+					"protocol": "http",
 					"host": [
 						"clouddrop",
 						"xyz"
@@ -90,6 +95,21 @@
 		},
 		{
 			"name": "Upload Metadata txt",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "93c8a9dd-9dce-44af-8b4e-56fe5563d4aa",
+						"exec": [
+							"var code = 201;",
+							"pm.test(\"Check response code \" + code, function () {",
+							"    pm.response.to.have.status(code);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -109,8 +129,8 @@
 					"raw": "{\n    \"filename\": \"testfile.txt\",\n    \"type\": \".txt\"\n}"
 				},
 				"url": {
-					"raw": "https://clouddrop.xyz/files/metadata",
-					"protocol": "https",
+					"raw": "http://clouddrop.xyz/files/metadata",
+					"protocol": "http",
 					"host": [
 						"clouddrop",
 						"xyz"
@@ -125,6 +145,21 @@
 		},
 		{
 			"name": "Update File txt",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b9dbd8bf-cd10-4c9f-93b9-969b2ae2495d",
+						"exec": [
+							"var code = 204;",
+							"pm.test(\"Check response code \" + code, function () {",
+							"    pm.response.to.have.status(code);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -145,79 +180,8 @@
 					]
 				},
 				"url": {
-					"raw": "https://clouddrop.xyz/files/testfile.txt",
-					"protocol": "https",
-					"host": [
-						"clouddrop",
-						"xyz"
-					],
-					"path": [
-						"files",
-						"testfile.txt"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Upload Metadata pic",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Authorization",
-						"value": "{{currentAccessToken}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"filename\": \"Fisch.jpg\",\n    \"type\": \".jpg\"\n}"
-				},
-				"url": {
-					"raw": "https://clouddrop.xyz/files/metadata",
-					"protocol": "https",
-					"host": [
-						"clouddrop",
-						"xyz"
-					],
-					"path": [
-						"files",
-						"metadata"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update File pic",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "{{currentAccessToken}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "file",
-							"type": "file",
-							"src": "/home/pokgak/git/cloud-computing/files-service/src/main/java/com/clouddrop/files/testfile.txt"
-						}
-					]
-				},
-				"url": {
-					"raw": "https://clouddrop.xyz/files/testfile.txt",
-					"protocol": "https",
+					"raw": "http://clouddrop.xyz/files/testfile.txt",
+					"protocol": "http",
 					"host": [
 						"clouddrop",
 						"xyz"
@@ -232,6 +196,21 @@
 		},
 		{
 			"name": "List Files",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3a479bae-3f38-4535-b29b-0bdaf773a04d",
+						"exec": [
+							"var code = 200;",
+							"pm.test(\"Check response code \" + code, function () {",
+							"    pm.response.to.have.status(code);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [
@@ -242,8 +221,8 @@
 					}
 				],
 				"url": {
-					"raw": "https://clouddrop.xyz/files/list",
-					"protocol": "https",
+					"raw": "http://clouddrop.xyz/files/list",
+					"protocol": "http",
 					"host": [
 						"clouddrop",
 						"xyz"
@@ -258,6 +237,21 @@
 		},
 		{
 			"name": "Search File",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "051ff7e7-8124-4163-b917-c1000711be8c",
+						"exec": [
+							"var code = 200;",
+							"pm.test(\"Check response code \" + code, function () {",
+							"    pm.response.to.have.status(code);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [
@@ -268,8 +262,8 @@
 					}
 				],
 				"url": {
-					"raw": "https://clouddrop.xyz/files/list/search?type=.txt",
-					"protocol": "https",
+					"raw": "http://clouddrop.xyz/files/list/search?type=.txt",
+					"protocol": "http",
 					"host": [
 						"clouddrop",
 						"xyz"
@@ -291,6 +285,21 @@
 		},
 		{
 			"name": "Download File",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e123f2af-c75a-45ba-8bbc-61cf72423c54",
+						"exec": [
+							"var code = 200;",
+							"pm.test(\"Check response code \" + code, function () {",
+							"    pm.response.to.have.status(code);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [
@@ -301,8 +310,8 @@
 					}
 				],
 				"url": {
-					"raw": "https://clouddrop.xyz/files/testfile.txt",
-					"protocol": "https",
+					"raw": "http://clouddrop.xyz/files/testfile.txt",
+					"protocol": "http",
 					"host": [
 						"clouddrop",
 						"xyz"
@@ -317,6 +326,21 @@
 		},
 		{
 			"name": "Delete File",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d388a012-d1c3-4dff-b376-6aa27d832ec9",
+						"exec": [
+							"var code = 204;",
+							"pm.test(\"Check response code \" + code, function () {",
+							"    pm.response.to.have.status(code);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [
@@ -327,8 +351,8 @@
 					}
 				],
 				"url": {
-					"raw": "https://clouddrop.xyz/files/testfile.txt",
-					"protocol": "https",
+					"raw": "http://clouddrop.xyz/files/testfile.txt",
+					"protocol": "http",
 					"host": [
 						"clouddrop",
 						"xyz"
@@ -343,6 +367,21 @@
 		},
 		{
 			"name": "Logout User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d0c8fbe5-4f6b-43a1-ab4c-ef777783a357",
+						"exec": [
+							"var code = 204;",
+							"pm.test(\"Check response code \" + code, function () {",
+							"    pm.response.to.have.status(code);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [
@@ -353,8 +392,8 @@
 					}
 				],
 				"url": {
-					"raw": "https://clouddrop.xyz/user/logout",
-					"protocol": "https",
+					"raw": "http://clouddrop.xyz/user/logout",
+					"protocol": "http",
 					"host": [
 						"clouddrop",
 						"xyz"
