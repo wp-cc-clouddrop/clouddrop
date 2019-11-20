@@ -1,0 +1,433 @@
+{
+	"info": {
+		"_postman_id": "31cc9893-e4ea-4eb2-baae-f6dbbff3be09",
+		"name": "clouddrop-testclient-A",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register User",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n \"name\": \"Client A\",\n \"email\": \"clientA@test.com\",\n \"password\": \"brockhampton\"\n}\n"
+				},
+				"url": {
+					"raw": "http://clouddrop.xyz/user",
+					"protocol": "http",
+					"host": [
+						"clouddrop",
+						"xyz"
+					],
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4939c7ee-adae-467f-82b2-47fbd8967086",
+						"exec": [
+							"var token = pm.response.headers.get(\"Authorization\");",
+							"console.log(\"token: \" + token);",
+							"",
+							"pm.globals.set(\"currentAccessToken\", token);",
+							"console.log(\"currentAccessToken: \" + pm.globals.get(\"currentAccessToken\"));",
+							"",
+							"var code = 204;",
+							"pm.test(\"Check response code \" + code, function () {",
+							"    pm.response.to.have.status(code);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "brockhampton",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "clientA@test.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://clouddrop.xyz/user/login",
+					"protocol": "http",
+					"host": [
+						"clouddrop",
+						"xyz"
+					],
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload Metadata txt",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "93c8a9dd-9dce-44af-8b4e-56fe5563d4aa",
+						"exec": [
+							"var code = 201;",
+							"pm.test(\"Check response code \" + code, function () {",
+							"    pm.response.to.have.status(code);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{currentAccessToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"filename\": \"testfile.txt\",\n    \"type\": \".txt\"\n}"
+				},
+				"url": {
+					"raw": "http://clouddrop.xyz/files/metadata",
+					"protocol": "http",
+					"host": [
+						"clouddrop",
+						"xyz"
+					],
+					"path": [
+						"files",
+						"metadata"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update File txt",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b9dbd8bf-cd10-4c9f-93b9-969b2ae2495d",
+						"exec": [
+							"var code = 204;",
+							"pm.test(\"Check response code \" + code, function () {",
+							"    pm.response.to.have.status(code);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{currentAccessToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "testfile.txt"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://clouddrop.xyz/files/testfile.txt",
+					"protocol": "http",
+					"host": [
+						"clouddrop",
+						"xyz"
+					],
+					"path": [
+						"files",
+						"testfile.txt"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Files",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3a479bae-3f38-4535-b29b-0bdaf773a04d",
+						"exec": [
+							"var code = 200;",
+							"pm.test(\"Check response code \" + code, function () {",
+							"    pm.response.to.have.status(code);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{currentAccessToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://clouddrop.xyz/files/list",
+					"protocol": "http",
+					"host": [
+						"clouddrop",
+						"xyz"
+					],
+					"path": [
+						"files",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search File",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "051ff7e7-8124-4163-b917-c1000711be8c",
+						"exec": [
+							"var code = 200;",
+							"pm.test(\"Check response code \" + code, function () {",
+							"    pm.response.to.have.status(code);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{currentAccessToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://clouddrop.xyz/files/list/search?type=.txt",
+					"protocol": "http",
+					"host": [
+						"clouddrop",
+						"xyz"
+					],
+					"path": [
+						"files",
+						"list",
+						"search"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": ".txt"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Download File",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e123f2af-c75a-45ba-8bbc-61cf72423c54",
+						"exec": [
+							"var code = 200;",
+							"pm.test(\"Check response code \" + code, function () {",
+							"    pm.response.to.have.status(code);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{currentAccessToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://clouddrop.xyz/files/testfile.txt",
+					"protocol": "http",
+					"host": [
+						"clouddrop",
+						"xyz"
+					],
+					"path": [
+						"files",
+						"testfile.txt"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete File",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d388a012-d1c3-4dff-b376-6aa27d832ec9",
+						"exec": [
+							"var code = 204;",
+							"pm.test(\"Check response code \" + code, function () {",
+							"    pm.response.to.have.status(code);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{currentAccessToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://clouddrop.xyz/files/testfile.txt",
+					"protocol": "http",
+					"host": [
+						"clouddrop",
+						"xyz"
+					],
+					"path": [
+						"files",
+						"testfile.txt"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d0c8fbe5-4f6b-43a1-ab4c-ef777783a357",
+						"exec": [
+							"var code = 204;",
+							"pm.test(\"Check response code \" + code, function () {",
+							"    pm.response.to.have.status(code);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{currentAccessToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://clouddrop.xyz/user/logout",
+					"protocol": "http",
+					"host": [
+						"clouddrop",
+						"xyz"
+					],
+					"path": [
+						"user",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "9e8af995-fcf9-48a2-a492-612a92efe450",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "3ace24e8-e28c-41cc-a25a-b23c8fc4729f",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
