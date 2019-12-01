@@ -40,8 +40,11 @@ spec:
         - containerPort: 8080
         resources: {}
         volumeMounts:
-        - mountPath: /app/config
+        - mountPath: /app/config/azure
           name: azure-cosmosdb-config
+          readOnly: true
+        - mountPath: /app/config/firestore
+          name: firestore-config
           readOnly: true
         env:
         - name: CLUSTER_ENV
@@ -50,12 +53,18 @@ spec:
               key: deploy-env
               name: cluster-env-config
               optional: false
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          value: /app/config/firestore/firestore-config.json
       imagePullSecrets:
       - name: haw-registry
       volumes:
       - name: azure-cosmosdb-config
         secret:
           secretName: azure-cosmosdb
+          optional: true
+      - name: firestore-config
+        secret:
+          secretName: firestore-config
           optional: true
 status: {}
 ---
