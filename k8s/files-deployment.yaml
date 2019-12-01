@@ -39,26 +39,31 @@ spec:
             secretKeyRef:
               key: conn.string
               name: azure-blob
+              optional: true
         - name: AZURE_CS_PICTURE_ANALYSIS_KEY
           valueFrom:
             secretKeyRef:
               key: subscriptionKey
               name: azure-cognitive-pic
+              optional: true
         - name: AZURE_CS_PICTURE_ANALYSIS_ENDPOINT
           valueFrom:
             secretKeyRef:
               key: endpoint
               name: azure-cognitive-pic
+              optional: true
         - name: AZURE_CS_TEXT_ANALYSIS_KEY
           valueFrom:
             secretKeyRef:
               key: key
               name: azure-cognitive-text
+              optional: true
         - name: AZURE_CS_TEXT_ANALYSIS_ENDPOINT
           valueFrom:
             secretKeyRef:
               key: endpoint
               name: azure-cognitive-text
+              optional: true
         image: docker-hub.informatik.haw-hamburg.de/wp-cc-clouddrop/files-service:latest
         imagePullPolicy: Always
         name: files-svc

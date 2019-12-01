@@ -49,5 +49,6 @@ spec:
       - name: azure-cosmosdb-config
         secret:
           secretName: azure-cosmosdb
+          optional: true
 status: {}
 ---
