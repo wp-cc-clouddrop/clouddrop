@@ -5,7 +5,13 @@ metadata:
   annotations:
     # use the shared ingress-nginx
     kubernetes.io/ingress.class: "nginx"
+    # for TLS with cert-manager
+    cert-manager.io/cluster-issuer: "letsencrypt-staging-issuer"
 spec:
+  tls:
+  - hosts:
+    - clouddrop.xyz
+    secretName: clouddrop-cert
   rules:
   - host: clouddrop.xyz
     http:
