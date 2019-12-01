@@ -12,7 +12,7 @@ cloud-deploy:
     name: Dev
   image: docker-hub.informatik.haw-hamburg.de/wp-cc-clouddrop/cloudrop/deploy
   script:
-    - login-cluster.sh
+    - ./login-cluster.sh
     # deploy!
     - kubectl version
     - kubectl apply -n default -f k8s/files-deployment.yaml
