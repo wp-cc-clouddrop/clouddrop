@@ -43,6 +43,13 @@ spec:
         - mountPath: /app/config
           name: azure-cosmosdb-config
           readOnly: true
+        env:
+        - name: CLUSTER_ENV
+          valueFrom:
+            configMapKeyRef:
+              key: cluster-env-config
+              name: deploy-env
+              optional: false
       imagePullSecrets:
       - name: haw-registry
       volumes:

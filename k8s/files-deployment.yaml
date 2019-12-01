@@ -33,7 +33,19 @@ spec:
         app: files-svc
     spec:
       containers:
-      - env:
+      - image: docker-hub.informatik.haw-hamburg.de/wp-cc-clouddrop/files-service:latest
+        imagePullPolicy: Always
+        name: files-svc
+        ports:
+        - containerPort: 8080
+        resources: {}
+        env:
+        - name: CLUSTER_ENV
+          valueFrom:
+            configMapKeyRef:
+              key: cluster-env-config
+              name: deploy-env
+              optional: false
         - name: AZURE_BLOB_CONN_STRING
           valueFrom:
             secretKeyRef:
@@ -64,12 +76,6 @@ spec:
               key: endpoint
               name: azure-cognitive-text
               optional: true
-        image: docker-hub.informatik.haw-hamburg.de/wp-cc-clouddrop/files-service:latest
-        imagePullPolicy: Always
-        name: files-svc
-        ports:
-        - containerPort: 8080
-        resources: {}
       imagePullSecrets:
       - name: haw-registry
 status: {}
