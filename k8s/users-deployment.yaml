@@ -47,8 +47,8 @@ spec:
         - name: CLUSTER_ENV
           valueFrom:
             configMapKeyRef:
-              key: cluster-env-config
-              name: deploy-env
+              key: deploy-env
+              name: cluster-env-config
               optional: false
       imagePullSecrets:
       - name: haw-registry
