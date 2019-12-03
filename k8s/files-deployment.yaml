@@ -50,7 +50,7 @@ spec:
               key: deploy-env
               name: cluster-env-config
               optional: false
-        - name: GCP_STORAGE_CREDENTIAL_JSON
+        - name: GOOGLE_APPLICATION_CREDENTIALS
           valueFrom:
               configMapKeyRef:
                 key: jsonpath
