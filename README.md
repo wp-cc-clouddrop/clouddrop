@@ -3,7 +3,12 @@
 </div>
 
 # cloud-wp-ws19
-Project repository for WP Cloud Computing WS19
+
+Project repository for WP Cloud Computing WS19. This project consists of multiple repositories:
+
+- [Master](https://github.com/wp-cc-clouddrop/clouddrop): configs for K8s deployments and services.
+- [Files](https://github.com/wp-cc-clouddrop/files): handle uploaded files.
+- [Users](https://github.com/wp-cc-clouddrop/users): handles user authentications and informations.
 
 ## Backups
 
